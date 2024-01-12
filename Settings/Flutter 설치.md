@@ -16,6 +16,9 @@ macOS, IntelliJ IDEA CE, Homebrew
 
 상태 확인 명령어
 `flutter doctor`
+
+실행 명령어
+`flutter run`
 ### ios 설정
 #### CocoaPods 설치
 설치 명령어
@@ -27,3 +30,14 @@ macOS, IntelliJ IDEA CE, Homebrew
 #### 기타
 doctor에서 확인한 내용들 처리 해주면 된다. 나는 xcode를 계속 사용해서 그런지 `xcode-select`같은 내용은 나오지 않았다.
 
+### android 설정
+#### gradle
+build.gradle (app)
+```gradle
+android {
+	...
+	task wrapper(type: Wrapper) {  
+	    gradleVersion = '7.0'  
+	}
+}
+```
