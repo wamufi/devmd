@@ -1,4 +1,12 @@
-Log class 만들기
+---
+title: Log class 만들기
+date: 2024-01-31
+time: 13:52:37
+tags:
+  - android
+  - kotlin
+  - ios
+  - swift
 ---
 ```kotlin
 class DbLog {
@@ -23,17 +31,23 @@ class DbLog {
 
 ```kotlin
 object LogHelper {
-    private const val TAG = "WhoWho"
+    private const val TAG = "AppName"
 
     fun d(message: Any) {
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, convertMessage(convertToString(message)))
+            Log.d(TAG, "🔧 Debug ${convertMessage(convertToString(message))}")
         }
     }
 
+	fun i(message: Any) {
+		if (BuildConfig.DEBUG) {
+			Log.i(TAG, "ℹ️ Info ${convertMessage(convertToString(message))}")
+		}
+	}
+
     fun e(message: Any) {
         if (BuildConfig.DEBUG) {
-            Log.e(TAG, convertMessage(convertToString(message)))
+            Log.e(TAG, "❌ Error ${convertMessage(convertToString(message))}")
         }
     }
 
@@ -42,7 +56,7 @@ object LogHelper {
         val fileName = element.fileName
         return String.format(
             Locale.getDefault(),
-            "%s::%s() #%d] %s",
+            "[%s.%s()#%d] %s",
             fileName.substring(0, fileName.indexOf(".")),
             element.methodName,
             element.lineNumber,
