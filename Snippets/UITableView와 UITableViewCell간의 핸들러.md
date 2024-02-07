@@ -47,8 +47,10 @@ class ViewController: UIViewConroller {
 	
 		cell.configure(with: item)
 		cell.onEtcHandler {
+			// UIView.performWithoutAnimation {
 			tableView.beginUpdates()
 			tableView.endUpdates()
+			// }
 		}
 	
 		return cell
