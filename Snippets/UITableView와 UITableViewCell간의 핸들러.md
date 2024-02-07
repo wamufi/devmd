@@ -8,6 +8,8 @@ tags:
 - uitableview
 - uitableviewcell
 ---
+`tableView(_:didSelectRowAt:)`랑 `setSelected`를 사용하면 편리하지만 그런 경우가 아닐 경우
+
 UITableViewCell.swift
 ```swift
 class Cell: UITableViewCell {
