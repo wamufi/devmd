@@ -7,6 +7,7 @@ tags:
   - kotlin
   - ios
   - swift
+  - json
 ---
 kotlinx
 ```
@@ -17,7 +18,9 @@ val encoding = json.encodeToString(args)
 ```
 
 swift
-```1
+```
 let decoding = try? JSONDecoder().decode(Args.self, from: jsonString)
 let encoding = try? JSONEncoder().encode(args)
 ```
+
+자꾸 까먹어서...  moshi, gson 추가 예정
