@@ -30,9 +30,10 @@ if let jsonData = jsonString.data(using: .utf8) {
 	}
 }
 
-	
-let jsonData = try? JSONEncoder().encode(args)
-let encoding = String(data: jsonData, encoding: .utf8)!
+
+if let jsonData = try? JSONEncoder().encode(args) {
+	let encoding = String(data: jsonData, encoding: .utf8)!
+}
 ```
 
 자꾸 까먹어서...  moshi, gson 추가 예정
