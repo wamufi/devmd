@@ -9,8 +9,8 @@ tags:
   - swift
   - json
 ---
-인코딩: 객체를 json으로
-디코딩: json을 객체로
+인코딩: 객체를 json(string)으로
+디코딩: json(string)을 객체로
 
 kotlinx
 ```
@@ -30,8 +30,9 @@ if let jsonData = jsonString.data(using: .utf8) {
 	}
 }
 
-
-let encoding = try? JSONEncoder().encode(args)
+	
+let jsonData = try? JSONEncoder().encode(args)
+let encoding = String(data: jsonData, encoding: .utf8)!
 ```
 
 자꾸 까먹어서...  moshi, gson 추가 예정
