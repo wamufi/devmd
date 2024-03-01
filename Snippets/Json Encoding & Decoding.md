@@ -9,6 +9,9 @@ tags:
   - swift
   - json
 ---
+인코딩: 객체를 json으로
+디코딩: json을 객체로
+
 kotlinx
 ```
 val json = Json { ignoreUnknownKeys = true }
@@ -19,7 +22,15 @@ val encoding = json.encodeToString(args)
 
 swift
 ```
-let decoding = try? JSONDecoder().decode(Args.self, from: jsonString)
+if let jsonData = jsonString.data(using: .utf8) {
+	do {
+		let decoding = try JSONDecoder().decode(Args.self, from: jsonData)
+	} catch {
+		print("error")
+	}
+}
+
+
 let encoding = try? JSONEncoder().encode(args)
 ```
 
