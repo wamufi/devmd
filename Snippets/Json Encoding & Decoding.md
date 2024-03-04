@@ -9,8 +9,8 @@ tags:
   - swift
   - json
 ---
-인코딩: 객체를 json(string)으로
 디코딩: json(string)을 객체로
+인코딩: 객체를 json(string)으로
 
 kotlinx
 ```
