@@ -17,12 +17,14 @@ extension UILabel {
                 style.alignment = alignment
             }
             
-            
-            let offsetDivisor = if #available(iOS 16.4, *) {
-                return 2
-            } else {
-                return 4
+            let offsetDivisor: CGFloat = {
+                if #available(iOS 16.4, *) {
+                    return 2
+                } else {
+                    return 4
+                }
             }()
+            
             let attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: style, .baselineOffset: (lineHeight - font.lineHeight) / offsetDivisor]
             
             let attrString = NSAttributedString(string: text, attributes: attributes)
