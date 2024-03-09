@@ -13,7 +13,7 @@ tags:
 인코딩: 객체를 json(string)으로
 
 kotlinx
-```
+```kotlin
 val json = Json { ignoreUnknownKeys = true }
 
 val decoding = json.decodeFromString<Args>(jsonString)
@@ -21,7 +21,7 @@ val encoding = json.encodeToString(args)
 ```
 
 swift
-```
+```swift 
 if let jsonData = jsonString.data(using: .utf8) {
 	do {
 		let decoding = try JSONDecoder().decode(Args.self, from: jsonData)
