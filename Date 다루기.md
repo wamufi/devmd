@@ -8,7 +8,8 @@ tags:
 ---
 ## 현재 날짜
 ```kotlin
-
+val date = Date() // Mon Mar 11 23:38:32 GMT+09:00 2024
+val calendar = Calendar.getInstance().time // Mon Mar 11 23:38:32 GMT+09:00 2024
 ```
 ## String to Local date format string
 2024-03-11 10:01:34를 한국식으로 표현
