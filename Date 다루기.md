@@ -6,7 +6,7 @@ tags:
 - android
 - kotlin
 ---
-## 현재 날짜 가져오기
+## 현재 날짜, 시간 가져오기
 ```kotlin
 val calendar = Calendar.getInstance().time // Mon Mar 11 23:38:32 GMT+09:00 2024
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -20,7 +20,7 @@ val currentTime = {
 }() // 2024-03-11 23:38:32
 ```
 
-## 특정 날짜 가져오기
+## 특정 날짜, 시간 가져오기
 ```kotlin
 // 오늘의 시작
 val startOfDay = Calendar.getInstance().apply {
@@ -49,7 +49,47 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 	val endOfDay2 = LocalTime.MAX.atDate(LocalDate.now()) // 2024-03-12T23:59:59.999999999
 	val endOfDay3 = LocalDateTime.now().with(LocalTime.MAX) // 2024-03-12T23:59:59.999999999
 }
+
+// 내일 오전 8시
+val tomorrowAm = Calendar.getInstance().apply {  
+    add(Calendar.DAY_OF_MONTH, 1)  
+    set(Calendar.HOUR_OF_DAY, 8)  
+    set(Calendar.MINUTE, 0)  
+    set(Calendar.SECOND, 0)  
+}.time // Wed Mar 12 08:00:00 GMT+09:00 2024
+
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    val tomorrowAm = LocalDateTime.now().plusDays(1).withHour(8).withMinute(0).withSecond(0).withNano(0) // 2024-03-12T08:00
+}
 ```
+
+## ZonedDateTime
+```kotlin
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+	// LocalDateTime to ZonedDateTime
+	val nowAtHelsinki = LocalDateTime.now().atZone(ZoneId.of("Europe/Helsinki")) // 2024-03-11T16:24:15.994825+02:00[Europe/Helsinki]
+	
+	// ZonedDateTime
+	val nowAtUTC = ZonedDateTime.now(ZoneId.of("UTC")) // 2024-03-11T07:27:38.147302Z[UTC]
+}
+```
+
+## Formatting: Date to String
+```kotlin
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+	val dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) // 2024-03-11T16:32:56.075643 // ISO_DATE_TIME과 동일
+	
+	val zonedDateTime = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ISO_ZONED_DATE_TIME) // 2024-03-11T07:32:56.075693Z[UTC] // ISO_DATE_TIME과 동일
+	val localZonedDateTime = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) // 2024-03-11T07:32:56.075693
+	
+	val pattern = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) // 2024-03-11 16:37:57
+	
+	val localizedLongStyle = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)) // 2024년 3월 11일 화요일 오전 7시 42분 41초 UTC
+	val franceLocalizedMediumLongStyle = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.LONG).withLocale(Locale.FRENCH)) // 11 mars 2024, 07:42:41 UTC
+}
+
+```
+
 
 ## String to Local date format string
 ```kotlin
