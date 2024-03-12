@@ -87,7 +87,8 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 	val localizedLongStyle = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)) // 2024년 3월 11일 화요일 오전 7시 42분 41초 UTC
 	val franceLocalizedMediumLongStyle = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.LONG).withLocale(Locale.FRENCH)) // 11 mars 2024, 07:42:41 UTC
 } else {
-	val localDate = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(Date())  // 2024. 3. 11. 오후 9:13
+	val localizedDateTime = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(Date())  // 2024. 3. 11. 오후 9:13
+	val ukLocalizedDateTime = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.UK).format(Date())
 }
 ```
 
