@@ -92,7 +92,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 ```
 
 
-## String to Local date format string
+## Extensions
 ```kotlin
 fun String.toLocalDateString(): String {
 	val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss") // 2024-03-12 08:00:00
@@ -100,10 +100,7 @@ fun String.toLocalDateString(): String {
 	val dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT)  
 	return dateFormat.format(date) // Mar 12, 2024 8:00 AM
 }
-```
 
-## Date to Local date format string
-```kotlin
 fun Date.toLocalDateString(): String { // Tue Mar 12 08:00:00 GMT+09:00 2024
 	val dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT)  
 	return dateFormat.format(this) // Mar 12, 2024 8:00 AM
