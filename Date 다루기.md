@@ -6,7 +6,7 @@ tags:
 - android
 - kotlin
 ---
-## 현재 날짜
+## 현재 날짜 가져오기
 ```kotlin
 val calendar = Calendar.getInstance().time // Mon Mar 11 23:38:32 GMT+09:00 2024
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -18,6 +18,37 @@ val currentTime = {
     val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")  
     dateFormat.format(millis)  
 }() // 2024-03-11 23:38:32
+```
+
+## 특정 날짜 가져오기
+```kotlin
+// 오늘의 시작
+val startOfDay = Calendar.getInstance().apply {
+	set(Calendar.HOUR_OF_DAY, 0)
+	set(Calendar.MINUTE, 0)
+	set(Calendar.SECOND, 0)
+	set(Calendar.MILLISECOND, 0)
+}.time // Tue Mar 11 00:00:00 GMT+09:00 2024
+
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+	val startOfDay1 = LocalDate.now().atStartOfDay() // 2024-03-11T00:00
+	val startOfDay2 = LocalDate.now().atTime(LocalTime.MIN) // 2024-03-11T00:00
+	val startOfDay3 = LocalTime.MIN.atDate(LocalDate.now()) // 2024-03-11T00:00
+	val startOfDay4 = LocalDateTime.now().with(LocalTime.MIN) // 2024-03-11T00:00
+}
+
+// 오늘의 마지막
+val endOfDay = Calendar.getInstance().apply {
+	set(Calendar.HOUR_OF_DAY, 23)
+	set(Calendar.MINUTE, 59)
+	set(Calendar.SECOND, 59)
+} // Tue Mar 11 23:59:59 GMT+09:00 2024
+
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+	val endOfDay1 = LocalDate.now().atTime(LocalTime.MAX) // 2024-03-12T23:59:59.999999999
+	val endOfDay2 = LocalTime.MAX.atDate(LocalDate.now()) // 2024-03-12T23:59:59.999999999
+	val endOfDay3 = LocalDateTime.now().with(LocalTime.MAX) // 2024-03-12T23:59:59.999999999
+}
 ```
 
 ## String to Local date format string
