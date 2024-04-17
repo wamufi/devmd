@@ -13,3 +13,11 @@ yum install -y nodejs
 node -v
 ```
 
+vue 프로젝트 생성
+```
+npm create vue@latest
+
+cd <your-project-name>
+npm install
+npm run dev
+```
