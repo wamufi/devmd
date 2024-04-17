@@ -6,6 +6,11 @@ tags:
   - linux
   - setting
 ---
+ssh 접속
+```
+ssh root(ID)@1.234.567.89 -p 3000(port number)
+```
+
 node.js 설치
 ```
 curl -fsSL https://rpm.nodesource.com/setup_current.x | bash -
