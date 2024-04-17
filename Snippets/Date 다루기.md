@@ -5,6 +5,7 @@ time: 10:01:34
 tags:
 - android
 - kotlin
+- date
 ---
 ## 현재 날짜, 시간 가져오기
 ```kotlin

@@ -5,6 +5,7 @@ time: 03:32:47
 tags:
   - ios
   - swift
+  - uilabel
 ---
 ```swift
 extension UILabel {
