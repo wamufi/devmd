@@ -13,3 +13,5 @@ private func writeAppStoreReview() {
     UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
 }
 ```
+
+https://developer.apple.com/documentation/storekit/requesting_app_store_reviews
