@@ -3,13 +3,13 @@ title: MacOS에 Oracle DB 설치
 date: 2024-05-13
 time: 14:41:29
 tags:
-	- database
-	- oracle
+  - database
+  - oracle
 ---
 컨테이너 이름: oracle
 오라클 비밀번호: pass
 
-설치 환경: MacOS Monterey 12.7, Intel Mac
+설치 환경: MacOS Monterey 12.7 & Intel
 
 ### Oracle DB 설치 및 실행
 #### Docker 설치
