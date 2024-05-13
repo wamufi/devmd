@@ -9,27 +9,50 @@ tags:
 
 설치 환경: MacOS Monterey 12.7, Intel Mac
 
-### Docker 설치
+### Oracle DB 설치 및 실행
+#### Docker 설치
 `brew install docker`
 
-### Colima 설치
+#### Colima 설치
 `brew install colima`
 
-### Colima 실행
+#### Colima 실행
 `colima start --memory 4 --arch x86_64`
 
-### Docker 실행
+#### Docker 실행
 `docker run --name oracle -e ORACLE_PASSWORD=pass -p 1521:1521 -d gvenzl/oracle-xe`
 
-### Docker 컨테이너 조회
+#### Docker 컨테이너 조회
 `docker ps`
 
+### SQL plus
 ### SQL plus 실행
 `docker exec -it oracle sqlplus`
 user-name: system
 password: pass
 
-### SQL plus 종료
+#### Oracle 접속
+```bash
+SQL> connect system/pass
+Connected
+```
+
+#### hr 계정 언락
+hr 계정은 Oracle 에서 기본으로 제공하는 계정. 실습용으로 사용하기에 적절한 인사(employees) 샘플 데이터 제공.
+```bash
+SQL> ALTER USER hr IDENTIFIED BY hr ACCOUNT unlock;
+User altered.
+SQL> commit;
+```
+
+#### hr 계정 접속
+```bash
+SQL> connect hr/hr
+Connected
+SQL> select * from employees;
+```
+
+#### SQL plus 종료
 `SQL> exit`
 
 ### Docker 컨테이너 종료
