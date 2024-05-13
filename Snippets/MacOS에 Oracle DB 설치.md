@@ -3,6 +3,8 @@ title: MacOS에 Oracle DB 설치
 date: 2024-05-13
 time: 14:41:29
 tags:
+	- database
+	- oracle
 ---
 컨테이너 이름: oracle
 오라클 비밀번호: pass
@@ -55,15 +57,25 @@ SQL> select * from employees;
 #### SQL plus 종료
 `SQL> exit`
 
-### Docker 컨테이너 종료
-`docker stop oracle`
-
-### Docker 컨테이너 시작
+### Docker 컨테이너
+#### 시작
 `docker start oracle`
 
-### Docker 로그
+#### 종료
+`docker stop oracle`
+
+#### 로그
 `docker logs -f oracle`
 
-https://velog.io/@devsaza/M1-M2-Mac-OS%EC%97%90%EC%84%9C-Oracle-DB-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+### DBeaver
+#### 연결
+Create -> Connection
+Host: 192.168.0.x
+Port: 1521
+Database: xe
+Username: system
+Password: pass
 
+https://velog.io/@devsaza/M1-M2-Mac-OS%EC%97%90%EC%84%9C-Oracle-DB-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
 https://medium.com/@hayeonkimmie/os%EC%97%90-oracle-sql-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-e6f862d1d3a8
+https://davidev-wiki.tistory.com/entry/Mac%EC%97%90%EC%84%9C-Oracle11g-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-Docker-DBeaver
