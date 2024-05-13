@@ -6,7 +6,12 @@ tags:
   - database
   - postgresql
 ---
-macOS (M2)에서 brew로 설치 했을 때 기준
+macOS (M2)
+
+설치
+```
+brew install postgresql
+```
 
 /opt/homebrew/var/postgresql@14/postgresql.conf 수정
 ```
