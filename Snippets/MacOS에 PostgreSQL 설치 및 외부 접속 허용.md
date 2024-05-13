@@ -6,14 +6,18 @@ tags:
   - database
   - postgresql
 ---
-macOS (M2)
-
 설치
 ```
 brew install postgresql
 ```
 
-/opt/homebrew/var/postgresql@14/postgresql.conf 수정
+실행
+```
+brew services restart postgresql
+```
+
+M2: /opt/homebrew/var/postgresql@14/postgresql.conf 수정
+Intell: 
 ```
 # - Connection Settings -
 
