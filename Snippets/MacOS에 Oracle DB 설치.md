@@ -57,6 +57,31 @@ SQL> select * from employees;
 #### SQL plus 종료
 `SQL> exit`
 
+### 계정
+#### 계정 생성
+```bash
+SQL> CREATE USER test IDENTIFIED BY 1234;
+User created.
+```
+
+#### 계정 권한
+```bash
+SQL> GRANT CONNECT, RESOURCE, DBA TO test;
+Grant succeeded.
+```
+
+#### 계정 전환
+```bash
+SQL> CONN test/1234;
+Connected.
+```
+
+#### 접속 계정 확인
+```bash
+SQL> SHOW USER;
+USER is "TEST";
+```
+
 ### Docker 컨테이너
 #### 시작
 `docker start oracle`
