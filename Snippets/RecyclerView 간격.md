@@ -5,6 +5,7 @@ time: 11:18:59
 tags:
   - android
   - kotlin
+  - recyclerview
 ---
 Horizontal
 ```kotlin

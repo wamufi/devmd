@@ -7,6 +7,7 @@ tags:
   - kotlin
   - ios
   - swift
+  - log
 ---
 ```kotlin
 class DbLog {
