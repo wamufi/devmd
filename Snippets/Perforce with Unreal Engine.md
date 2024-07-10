@@ -26,7 +26,7 @@ Stream으로 생성
 서버의 P4V에서 depot 선택 -> Stream Graph -> New Stream...
 
 ## workspace 생성
-클라이언트의 P4V에서 
+클라이언트의 P4V에서 New Workspace...
 
 ## 추가
 * depot은 프로젝트 별로 생성(하지 않아도 되지만)
