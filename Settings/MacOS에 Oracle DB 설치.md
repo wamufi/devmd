@@ -92,6 +92,10 @@ USER is "TEST";
 #### 로그
 `docker logs -f oracle`
 
+### 실행
+`colima start --memory 4 --arch x86_64`
+`docker start oracle`
+
 ### DBeaver
 #### 연결
 Create -> Connection
@@ -104,3 +108,4 @@ Password: pass
 https://velog.io/@devsaza/M1-M2-Mac-OS%EC%97%90%EC%84%9C-Oracle-DB-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
 https://medium.com/@hayeonkimmie/os%EC%97%90-oracle-sql-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-e6f862d1d3a8
 https://davidev-wiki.tistory.com/entry/Mac%EC%97%90%EC%84%9C-Oracle11g-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-Docker-DBeaver
+https://sum-mit45.tistory.com/entry/DOCKER-Cannot-connect-to-the-Docker-daemon-at-unixcolimadefaultdockersock-Is-the-docker-daemon-running
