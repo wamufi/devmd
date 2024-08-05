@@ -128,3 +128,5 @@ struct ContentView: View {
 	}
 }
 ```
+
+https://developers.google.com/admob/ios/swiftui
