@@ -6,6 +6,8 @@ tags:
 - swift
 - kotlin
 ---
+## Swift
+Decodable.swift
 ```swift
 struct Person: Decodable {
     var name: String?
@@ -39,13 +41,22 @@ fileprivate func decrypt(cipherText: String?) -> String? {
 }
 ```
 
+## Kotlin
+### Gson
+DataClass.kt
 ```kotlin
 data class Person(
+	@SerializedName("name")
     val name: String?,
+    @SerializedName("age")
     val age: Int?,
+    @SerializedName("addr")
     val addr: String?
 )
+```
 
+JsonDeserializer.kt
+```kotlin
 import com.google.gson.*
 import java.lang.reflect.Type
 
@@ -67,5 +78,75 @@ class PersonDeserializer : JsonDeserializer<Person> {
     private fun decrypt(cipherText: String?): String? {
         return decrypt(cipherText?.toString())
     }
+}
+```
+
+AsdfService.kt
+```kotlin
+interface AsdfService {
+
+	companion object {  
+	    private const val BASE_URL = "https://asdf.com/"  
+	  
+	    fun create(): AsdfService {  
+	        val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }  
+	  
+	        val client = OkHttpClient.Builder().addInterceptor(logger).build()  
+	        val gson = GsonBuilder().registerTypeAdapter(DataClass::class.java, JsonDeserializer()).create()  
+	  
+	        return Retrofit.Builder().baseUrl(BASE_URL).client(client)  
+	            .addConverterFactory(GsonConverterFactory.create(gson))  
+	            .build().create(AsdfService::class.java)  
+	    }
+	}
+}
+```
+
+### Kotlin Serialization
+DataClass.kt
+```kotlin
+@Serializable
+data class Person(
+	@Serializable(with = EncryptedStringSerializer::class)
+    val name: String?,
+    @Serializable(with = EncryptedStringSerializer::class)
+    val age: Int?,
+    val addr: String?
+)
+```
+
+EncryptedStringSerializer.kt
+```kotlin
+object EncryptedStringSerializer : KSerializer<String> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("EncryptedString", PrimitiveKind.STRING)
+
+    override fun serialize(encoder: Encoder, value: String) {
+        encoder.encodeString(value)
+    }
+
+    override fun deserialize(decoder: Decoder): String {
+        val encryptedString = decoder.decodeString()
+        return EncryptionUtil.decrypt(encryptedString)
+    }
+}
+```
+
+AsdfService.kt
+```kotlin
+interface AsdfService {
+
+	companion object {  
+	    private const val BASE_URL = "https://asdf.com/"  
+	  
+	    fun create(): AsdfService {  
+	        val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }  
+	  
+	        val client = OkHttpClient.Builder().addInterceptor(logger).build()  
+			
+	        return Retrofit.Builder().baseUrl(BASE_URL).client(client)  
+	            .addConverterFactory(Json.asConverterFactory("application/json; charset=UTF8".toMediaType())) 
+	            .build().create(AsdfService::class.java)  
+	    }
+	}
 }
 ```
