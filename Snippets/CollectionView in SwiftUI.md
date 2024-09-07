@@ -1,3 +1,12 @@
+---
+title: CollectionView in SwiftUI
+date: 2024-09-07
+time: 04:32:28
+tags:
+- swiftui
+- swift
+---
+
 ![[Screenshot 2024-09-05 at 18.27.29.png]]
 
 ```swift
