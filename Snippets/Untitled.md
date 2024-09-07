@@ -1,0 +1,51 @@
+![[Screenshot 2024-09-05 at 18.27.29.png]]
+
+```swift
+struct CollectionView: View {
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    private let items: [String] = Array(0...19).map { "\($0)" } // 아이템 목록
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            ForEach(0..<numberOfRows(), id: \.self) { rowIndex in // 각 행을 생성
+                HStack(spacing: 10) {
+                    Spacer()
+                    ForEach(itemsForRow(rowIndex), id: \.self) { item in // 특정 행에 있는 아이템을 반복하여 표시
+                        Text(item)
+                            .frame(width: 50, height: 50)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(8)
+                    }
+                    Spacer()
+                }
+            }
+        }
+        .padding()
+    }
+    
+    // 전체 아이템 수를 기준으로 전체 행 수를 계산
+    private func numberOfRows() -> Int {
+        var count = 0 // 현재까지 생성된 행의 수
+        var index = 0 // 현재까지 처리된 아이템의 인덱스
+        while index < items.count {
+            let rowItems = itemsPerRow(row: count) // 각 행의 아이템 수 (홀수 줄 4, 짝수 줄 5)
+            index += rowItems
+            count += 1
+        }
+        return count
+    }
+    
+    // 각 행의 아이템 수를 결정. 홀수 줄은 4개, 짝수 줄은 5개를 반환
+    // row는 현재 행의 인덱스
+    private func itemsPerRow(row: Int) -> Int {
+        return row % 2 == 0 ? 4 : 5
+    }
+    
+    // 특정 행에 해당하는 아이템. start와 end 인덱스를 계산하여 해당 행의 아이템들을 반환
+    private func itemsForRow(_ rowIndex: Int) -> [String] {
+        let start = (0..<rowIndex).map { itemsPerRow(row: $0) }.reduce(0, +) // 특정 행의 시작 인덱스. 이전 행까지의 모든 아이템 수를 합산하여 시작 인덱스를 계산
+        let end = min(start + itemsPerRow(row: rowIndex), items.count) // 현재 행의 마지막 인덱스
+        return Array(items[start..<end]) // 시작 인덱스와 끝 인덱스 사이의 아이템 배열
+    }
+}
+```
