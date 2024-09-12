@@ -7,7 +7,7 @@ tags:
 - swift
 ---
 ```swift
-struct ImageView: View {
+struct RatingView: View {
     
     @State var rating = 0
     
@@ -15,23 +15,39 @@ struct ImageView: View {
     private let highlightColors: [Color] = [.yellow, .red, .brown, .green, .cyan]
     
     var body: some View {
-        HStack {
-            ForEach(0..<5, id: \.self) { index in
-                let highlightColor = highlightColors[index]
-                
-                Button {
-                    rating = index + 1
-                } label: {
-                    Image(systemName: defaultImages[index])
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(rating <= index ? .blue : highlightColor)
-                        .shadow(color: highlightColor, radius: rating <= index ? 0 : 10)
-                        .scaledToFit()
+        VStack {
+            // 이미지
+            HStack {
+                ForEach(0..<5, id: \.self) { index in
+                    let highlightColor = highlightColors[index]
+                    
+                    Button {
+                        rating = rating == index + 1 ? 0 : index + 1
+                    } label: {
+                        Image(systemName: defaultImages[index])
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(rating <= index ? .blue : highlightColor)
+                            .shadow(color: highlightColor, radius: rating <= index ? 0 : 10)
+                            .scaledToFit()
+                    }
                 }
             }
+            .padding()
+            
+            // 별
+            HStack {
+                ForEach(0..<5, id: \.self) { index in
+                    Button {
+                        rating = rating == index + 1 ? 0 : index + 1
+                    } label: {
+                        Image(systemName: rating <= index ? "star": "star.fill")
+                            .foregroundColor(rating <= index ? .blue : .yellow)
+                    }
+                }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
