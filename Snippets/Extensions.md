@@ -7,6 +7,11 @@ tags:
 ---
 ```swift
 extension Optional where Wrapped: Collection {
+
+	var isNullOrEmpty: Bool {
+		return self?.isEmpty ?? true
+	}
+	
     var isNotNullOrEmpty: Bool {
         return self?.isEmpty == false
     }
