@@ -16,4 +16,8 @@ extension Optional where Wrapped: Collection {
         return self?.isEmpty == false
     }
 }
+
+extension String {
+	var trimmedLeadingWhitespace: String { return self.trimmingCharacters(in: .whitespaces) } // 맨 앞의 공백을 제거
+}
 ```
