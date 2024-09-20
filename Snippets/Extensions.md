@@ -8,16 +8,12 @@ tags:
 ```swift
 extension Optional where Wrapped: Collection {
 
-	var isNullOrEmpty: Bool {
-		return self?.isEmpty ?? true
-	}
-	
-    var isNotNullOrEmpty: Bool {
-        return self?.isEmpty == false
-    }
+	var isNullOrEmpty: Bool { return self?.isEmpty ?? true }
+    var isNotNullOrEmpty: Bool { return self?.isEmpty == false }
 }
 
 extension String {
+
 	var trimmedLeadingWhitespace: String { return self.trimmingCharacters(in: .whitespaces) } // 맨 앞의 공백을 제거
 }
 ```
