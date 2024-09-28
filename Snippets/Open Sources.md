@@ -11,6 +11,10 @@ https://github.com/matteocrippa/awesome-swift
 
 
 # UI
+
+## AlertKit
+https://github.com/sparrowcode/AlertKit
+
 ## SwiftUIPager
 https://github.com/fermoya/SwiftUIPager/
 
@@ -22,6 +26,9 @@ https://github.com/Mijick/PopupView
 
 ## Lottie
 https://github.com/airbnb/lottie-ios
+
+## Open SwiftUI Animations
+https://github.com/amosgyamfi/open-swiftui-animations
 
 # Networking
 ## Alamofire
