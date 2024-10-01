@@ -30,6 +30,9 @@ https://github.com/airbnb/lottie-ios
 ## Open SwiftUI Animations
 https://github.com/amosgyamfi/open-swiftui-animations
 
+## FabulaItemsProvider
+https://github.com/jasudev/FabulaItemsProvider
+
 # Networking
 ## Alamofire
 https://github.com/Alamofire/Alamofire
