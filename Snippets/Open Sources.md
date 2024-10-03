@@ -33,6 +33,9 @@ https://github.com/amosgyamfi/open-swiftui-animations
 ## FabulaItemsProvider
 https://github.com/jasudev/FabulaItemsProvider
 
+## SwiftUI
+https://github.com/ivanvorobei/SwiftUI
+
 # Networking
 ## Alamofire
 https://github.com/Alamofire/Alamofire
