@@ -22,3 +22,4 @@ tags:
 ##### 차이
 [[MySQL][MAC] brew services start mysql와 mysql.server start 차이](https://sunghyun98.tistory.com/297)
 
+### 외부 접속 허용
