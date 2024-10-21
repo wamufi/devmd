@@ -15,8 +15,12 @@ tags:
 #### 설치
 `brew install postgresql`
 
-### 실행
+#### 실행
+##### 부팅 시 자동 실행  (background)
 `brew services restart postgresql`
+
+##### 수동 실행 (foreground)
+`postgres -D /opt/homebrew/var/postgresql@14`
 
 ### 외부 접속 허용
 #### postgresql.conf
