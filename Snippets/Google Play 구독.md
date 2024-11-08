@@ -35,14 +35,12 @@ class BillingManager(private val activity: Activity) {
     private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->  
         if (billingResult.responseCode == BillingResponseCode.OK && purchases != null) {  
             for (purchase in purchases) {  
-//                if (purchase.purchaseState == PurchaseState.PURCHASED && !purchase.isAcknowledged) {  
-                    handlePurchase(purchase)  
-//                }  
+	            handlePurchase(purchase)  
             }  
         } else {  
             LogHelper.e(billingResult.debugMessage)  
         }  
-    }  
+    } // 상품 구매 업데이트 리스너
   
     private val billingClient = BillingClient.newBuilder(activity).enablePendingPurchases().setListener(purchasesUpdatedListener).build()  
   
@@ -157,5 +155,37 @@ private fun processPurchases(subscriptionPlanId: String) {
 			}  
 		}  
 	}  
+}
+```
+
+#### 구독 상품 구매 확인
+```kotlin
+fun handlePurchase(purchase: Purchase) {
+	if (purchase.purchaseState == PurchaseState.PURCHASED) {  
+	    if (!purchase.isAcknowledged) { // 구매가 확인되지 않았다면  
+	       acknowledgePurchase(purchase)  
+	    }
+	}
+}
+
+private fun acknowledgePurchase(purchase: Purchase) {  
+	val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.purchaseToken).build()  
+
+	val acknowledgePurchaseResponseListener = AcknowledgePurchaseResponseListener { billingResult ->  
+		LogHelper.v(billingResult.debugMessage)  
+		if (billingResult.responseCode == BillingResponseCode.OK) { // 구매 성공  
+			LogHelper.i(billingResult.debugMessage)  
+			_subscriptions.update {  
+				val list = it.toMutableList()  
+				list.addAll(purchase.products)  
+				list  
+			}  
+			LogHelper.d("${subscriptions.value}")  
+		} else {  
+			LogHelper.e(billingResult.debugMessage)  
+		}
+	}  
+
+	billingClient.acknowledgePurchase(acknowledgePurchaseParams, acknowledgePurchaseResponseListener)
 }
 ```
