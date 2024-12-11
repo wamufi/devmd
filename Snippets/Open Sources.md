@@ -18,6 +18,9 @@ https://github.com/sparrowcode/AlertKit
 ## SwiftUIPager
 https://github.com/fermoya/SwiftUIPager/
 
+## Pages
+https://github.com/nachonavarro/Pages
+
 ## PopupView
 https://github.com/exyte/PopupView
 
@@ -34,13 +37,15 @@ https://github.com/amosgyamfi/open-swiftui-animations
 https://github.com/jasudev/FabulaItemsProvider
 
 ## SwiftUI
-https://github.com/ivanvorobei/SwiftUIs
+https://github.com/ivanvorobei/SwiftUI
 
 # Networking
+
 ## Alamofire
 https://github.com/Alamofire/Alamofire
 
 
 # Image
+
 ## Kingfisher
 https://github.com/onevcat/Kingfisher
