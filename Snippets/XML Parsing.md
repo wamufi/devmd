@@ -48,6 +48,7 @@ Test.xml
 ```
 
 ## Kotlin
+### XmlUtil
 https://github.com/pdvrieze/xmlutil
 TestDataRoot.kt
 ```kotlin
@@ -149,7 +150,7 @@ class XmlParser() {
             it.readText()
         }  
   
-        return xml.decodeFromString(DailyBibleRoot.serializer(), xmlString)  
+        return xml.decodeFromString(TestDataRoot.serializer(), xmlString)  
     }
 }
 ```
@@ -160,6 +161,7 @@ val root = XmlParser().decoding(context = LocalContext.current)
 ```
 
 ## Swift
+### SWXMLHash
 https://github.com/drmohundro/SWXMLHash
 TestDataRoot.swift
 ```swift
@@ -168,7 +170,7 @@ struct TestOne: XMLObjectDeserialization {
     let sdate, edate: String
     
     static func deserialize(_ node: XMLIndexer) throws -> TestOne {
-        return try TestOne(bible: node["TestTwo"].value(), sdate: node.value(ofAttribute: "sdate"), edate: node.value(ofAttribute: "edate"))
+        return try TestOne(testTwo: node["TestTwo"].value(), sdate: node.value(ofAttribute: "sdate"), edate: node.value(ofAttribute: "edate"))
     }
     
     struct TestTwo: XMLObjectDeserialization {
@@ -217,7 +219,7 @@ struct TestOne: XMLObjectDeserialization {
 
     struct Testfour: XMLObjectDeserialization {
         let testFive: String
-        let title: [ExplainationTitle]
+        let title: [TestFive]
         let testSix: TestSix
         
         static func deserialize(_ node: XMLIndexer) throws -> Testfour {
@@ -242,7 +244,7 @@ struct TestOne: XMLObjectDeserialization {
         }
     }
 
-    struct ExplainationTitle: XMLObjectDeserialization {
+    struct TestFive: XMLObjectDeserialization {
         let verse: [Verse]
         let name: String
         
@@ -255,7 +257,7 @@ struct TestOne: XMLObjectDeserialization {
 
 XmlParser.swift
 ```swift
-class DailyBibleParser {
+class XmlParser {
     func readXml() {
         let fileManager = FileManager.default
         let path = Bundle.main.resourcePath!
@@ -276,6 +278,148 @@ class DailyBibleParser {
         } catch {
             print("error: \(error)")
         }
+    }
+}
+```
+
+### XMLCoder
+https://github.com/CoreOffice/XMLCoder
+TestDataRoot.swift
+```swift
+@Observable class TestDataRoot: Codable {
+	var testOne: TestOne = TestOne()
+
+	enum CodingKeys: String, CodingKey {
+		case _testOne = "TestOne"
+	}
+	
+	@Observable class TestOne: Codable {
+	    var testTwo: [TestTwo] = []
+	    var sdate: String = ""
+	    var edate: String = ""
+	    
+		enum CodingKeys: String, CodingKey {
+			case _testTwo = "testTwo"
+			case _sdate = "sdate"
+			case _edate = "edate"
+		}
+	    
+	    @Observable class TestTwo: Codable {
+	        var testThree: TestThree = TestThree()
+	        var testFour: TestFour = TestFour()
+	        var date: String = ""
+	        var title: String = ""
+	        var subTitle: String = ""
+	        
+	        enum CodingKeys: String, CodingKey {
+		        case _testThree = "TestThree"
+		        case _testFour = "TestFour"
+				case _date = "date"
+	            case _title = "title"
+	            case _subTitle = "subTitle"
+	        }
+	    }
+	
+	    @Observable class TestThree: Codable {
+	        let title: [TitleElement]
+	        
+	        enum CodingKeys: String, CodingKey {
+	            case _title = "title"
+	        }
+	    }
+	
+	    struct TitleElement: Codable {
+	        var contentinfo: ContentInfo = ContentInfo()
+	        var name: String = ""
+	        
+	        enum CodingKeys: String, CodingKey {
+		        case _contentInfo = "contentinfo"
+		        case _name = "name"
+	        }
+	    }
+	
+	    struct Contentinfo: Codable {
+	        var verse: [Verse] = []
+	        var bookcode: String = ""
+	        var chapter: String = ""
+	        
+	        enum CodingKeys: String, CodingKey {
+	            case _verse = "verse"
+	            case _bookcode = "bookcode"
+	            case _chapter = "chapter"
+	        }
+	    }
+	
+		@Observable class Verse: Codable {
+	        var content: String = ""
+	        var name: String = ""
+	        
+	        enum CodingKeys: String, CodingKey {
+	            case _content = "content"
+	            case _name = "name"
+	        }
+	    }
+	
+	    @Observable class Testfour: Codable {
+	        var testFive: String = ""
+	        var title: [TestFive] = []
+	        var testSix: TestSix = TestSix()
+	        
+	        enum CodingKeys: String, CodingKey {
+	            case _testFive = "testFive"
+	            case _title = "title"
+	            case _testSix = "testSix"
+	        }
+	    }
+	
+	    @Observable class TestSix: Codable {
+	        var testSeven: [TestSeven] = []
+	        var title: String = ""
+	        
+	        enum CodingKeys: String, CodingKey {
+	            case _testSeven = "testSeven"
+	            case _title = "title"
+			}
+	    }
+	
+	    @Observable class TestSeven: Codable {
+	        var title: String = ""
+	        var text: String = ""
+	        
+	        enum CodingKeys: String, CodingKey {
+	            case _title = "title"
+	            case _text = ""
+			}
+	    }
+	
+	    @Observable class TestFive: Codable {
+	        var verse: [Verse] = []
+	        var name: String = ""
+	        
+	        enum CodingKeys: String, CodingKey {
+	            case _verse = "verse"
+	            case _name = "name"
+			}
+	    }
+	}
+}
+```
+
+XmlParser.swift
+```swift
+class XmlParser {
+    func readXml() {
+        let fileManager = FileManager.default
+        let path = Bundle.main.resourcePath!
+
+		if let path = fileManager.contents(atPath: path + "/" + "Testdata.xml") { // resource folder의 파일 이름
+			parseXML(xmlData: path)
+		}
+    }
+    
+    private func parseXML(xmlData: Data) {
+		let test2 = try XMLDecoder().decode(TestDataRoot.self, from: xmlData)
+        print(test2.testOne.sdate)
     }
 }
 ```
