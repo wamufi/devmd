@@ -18,6 +18,9 @@ https://github.com/sparrowcode/AlertKit
 ## SwiftUIPager
 https://github.com/fermoya/SwiftUIPager/
 
+## PagerTabStripView
+https://github.com/xmartlabs/PagerTabStripView
+
 ## Pages
 https://github.com/nachonavarro/Pages
 
