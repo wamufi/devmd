@@ -30,5 +30,4 @@ tags:
 `ffmpeg -i video.mp4 -i audio.mp4 -c:v copy -c:a aac output.mp4`
 
 ### 코덱 정보
-
 `ffmpeg -i input.mp4`
