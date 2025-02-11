@@ -67,3 +67,17 @@ class ViewerPreferencesRepository @Inject constructor(private val dataStore: Dat
     }
 }
 ```
+
+ViewerViewModel.kt
+```kotlin
+@HiltViewModel
+class ViewerViewModel @Inject constructor(private val viewerPreferencesRepository: ViewerPreferencesRepository) : ViewModel() {
+	private val _viewerPreferencesFlow = viewerPreferencesRepository.viewerPreferencesFlow  
+	  
+	var fontScale: Float by mutableFloatStateOf(1.0f)  
+	var lineHeight: Float by mutableFloatStateOf(1.0f)  
+	var fontFamily: FontFamily by mutableStateOf(ViewerFont.ORIGINAL.fontFamily)  
+	  
+	private var debounceTime = 500L
+}
+```
