@@ -5,6 +5,8 @@ time:  09:36:09
 tags:
   - android
   - kotlin
+  - compose
+  - datastore
 ---
 ## Preferences DataStore
 Preferences DataStore는 키를 사용하여 데이터를 저장하고 데이터에 액세스합니다. 이 구현은 유형 안전성을 제공하지 않으며 사전 정의된 스키마가 필요하지 않습니다.
@@ -79,5 +81,46 @@ class ViewerViewModel @Inject constructor(private val viewerPreferencesRepositor
 	var fontFamily: FontFamily by mutableStateOf(ViewerFont.ORIGINAL.fontFamily)  
 	  
 	private var debounceTime = 500L
+
+	fun updateFontScale(value: Float) {  
+	    fontScale = value  
+	  
+	    viewModelScope.launch {  
+	        delay(debounceTime)  
+	        if (isActive) {  
+	            viewerPreferencesRepository.updateFontScale(fontScale)  
+	        }
+	    }  
+	}  
+  
+	fun updateFontFamily(font: ViewerFont) {  
+	    fontFamily = font.fontFamily  
+	  
+	    viewModelScope.launch {  
+	        delay(debounceTime)  
+	        if (isActive) {  
+	            viewerPreferencesRepository.updateFontFamily(font.name)  
+	        }    }  
+	}  
+	  
+	fun updateLineHeight(value: Float) {  
+	    lineHeight = value  
+	  
+	    viewModelScope.launch {  
+	        delay(debounceTime)  
+	        if (isActive) {  
+	            viewerPreferencesRepository.updateLineHeight(lineHeight)  
+	        }
+	    }  
+	}
+}
+```
+
+ThemeScreen.kt
+```kotlin
+@Composable
+fun ThemeScreen(viewModel: ViewerViewModel) {
+	// ...
+	Slider(value = viewModel.fontScale, onValueCahange = { viewModel.updateFontScale(it) })
 }
 ```
