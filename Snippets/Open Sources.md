@@ -42,6 +42,9 @@ https://github.com/jasudev/FabulaItemsProvider
 ## SwiftUI
 https://github.com/ivanvorobei/SwiftUI
 
+## MinimizableView
+https://github.com/DominikButz/MinimizableView
+
 # Networking
 
 ## Alamofire
