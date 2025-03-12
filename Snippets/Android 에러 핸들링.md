@@ -58,8 +58,31 @@ ViewModel.kt
 ```kotlin
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repository: LoginRepository) : ViewModel() {
+    private val _uiState: MutableStateFlow<ApiResult<LoginResponse>> = MutableStateFlow(ApiResult.Loading)
+    val uiState = _uiState.asStateFlow()
+
     fun login(username: String, password: String) {
-        
+        val parameter = LoginRequest(username, password)
+        viewModelScope.launch {
+            _uiState.value = repository.login(parameter)
+        }
+    }
+}
+```
+
+Screen.kt
+```kotlin
+@Composable
+fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
+    val uiState by viewModel.uiState.collctAsState()
+    when (uiState) {
+        is ApiResult.Loading -> { CircularProgressIndicator() }
+        is ApiResult.Success -> {
+            val loginResponse = (uiState as ApiResult.Success).data
+        }
+        is ApiResult.Error -> {
+            val error = (uiState as ApiResult.Error)
+        }
     }
 }
 ```
