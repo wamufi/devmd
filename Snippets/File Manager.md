@@ -1,14 +1,14 @@
 ---
-title: DownloadManager
+title: File Manager
 date:  2025-04-14
 time:  09:52:04
 tags:
   - android
   - kotlin
 ---
-DownloadManager.kt
+FileManager.kt
 ```kotlin
-class DownloadManager @Inject constructor(private val context: Context) {  
+class FileManager @Inject constructor(private val context: Context) {  
   
     /**  
      * 내부 저장소에 파일 저장  
@@ -82,8 +82,8 @@ AppModule.kt
 object AppModule {
 	@Provides  
 	@Singleton  
-	fun provideDownloadManager(@ApplicationContext context: Context): DownloadManager {  
-	    return DownloadManager(context)  
+	fun provideFileManager(@ApplicationContext context: Context): DownloadManager {  
+	    return FileManager(context)  
 	}
 }
 ```
