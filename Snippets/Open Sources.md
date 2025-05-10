@@ -15,8 +15,20 @@ https://github.com/matteocrippa/awesome-swift
 ## AlertKit
 https://github.com/sparrowcode/AlertKit
 
-## SwiftUIPager
-https://github.com/fermoya/SwiftUIPager/
+## FabulaItemsProvider
+https://github.com/jasudev/FabulaItemsProvider
+
+## FloatingButton
+https://github.com/exyte/FloatingButton
+
+## Lottie
+https://github.com/airbnb/lottie-ios
+
+## MinimizableView
+https://github.com/DominikButz/MinimizableView
+
+## Open SwiftUI Animations
+https://github.com/amosgyamfi/open-swiftui-animations
 
 ## PagerTabStripView
 https://github.com/xmartlabs/PagerTabStripView
@@ -30,20 +42,13 @@ https://github.com/exyte/PopupView
 ## PopupView
 https://github.com/Mijick/PopupView
 
-## Lottie
-https://github.com/airbnb/lottie-ios
-
-## Open SwiftUI Animations
-https://github.com/amosgyamfi/open-swiftui-animations
-
-## FabulaItemsProvider
-https://github.com/jasudev/FabulaItemsProvider
-
 ## SwiftUI
 https://github.com/ivanvorobei/SwiftUI
 
-## MinimizableView
-https://github.com/DominikButz/MinimizableView
+## SwiftUIPager
+https://github.com/fermoya/SwiftUIPager/
+
+
 
 
 # Networking
