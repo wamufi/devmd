@@ -7,6 +7,19 @@ tags:
 - kotlin
 - date
 ---
+## java.time API에서 시간, 날짜를 다루는 클래스
+|**클래스**|**포함 정보**|**타임존 처리**|**사용 예시**|
+|---|---|---|---|
+|LocalDateTime|날짜 + 시간 (년·월·일·시·분·초)|없음 (순수 날짜·시간)|“2025-05-14T14:30:00” 같은, 타임존 무관 값|
+|OffsetDateTime|날짜 + 시간 + UTC 오프셋 (±hh:mm)|고정된 오프셋만 표현 (예: +09:00)|“2025-05-14T14:30:00+09:00” 같은, 오프셋 기반|
+|ZonedDateTime|날짜 + 시간 + 타임존 ID (Region)|지역(zone) 단위까지 완전 표현|“2025-05-14T14:30:00[Asia/Seoul]” 같은, DST 등 고려|
+|Instant|타임라인상의 한 점 (UTC 기준)|UTC 기준의 절대 시점만|내부 저장·비교용, “2025-05-14T05:30:00Z” 같은|
+
+- **타임존 무관** 스케줄 표현 → LocalDateTime
+- **고정 오프셋(±hh:mm)** 사용 API → OffsetDateTime
+- **지역 기반 정확한 타임존(DST 포함)** → ZonedDateTime
+- **절대 비교·저장** → Instant
+
 ## 현재 날짜, 시간 가져오기
 ```kotlin
 val calendar = Calendar.getInstance().time // Mon Mar 11 23:38:32 GMT+09:00 2024
