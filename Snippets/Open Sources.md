@@ -42,6 +42,9 @@ https://github.com/exyte/PopupView
 ## PopupView
 https://github.com/Mijick/PopupView
 
+## Pow
+https://github.com/EmergeTools/Pow
+
 ## SwiftUI
 https://github.com/ivanvorobei/SwiftUI
 
