@@ -113,7 +113,7 @@ struct DetailView: View {
 ```
 
 
-`if isLoading { } else{ }` 에서 else에 있는 뷰의 toolbar를 보여주기 전에 다른 뷰를 보여주고 그 뷰를 보여주면 toolbar가 자연스럽게 보인다.
+`if isLoading { } else { }` 에서 else에 있는 뷰의 toolbar를 보여주기 전에 다른 뷰를 보여주고 그 뷰를 보여주면 toolbar가 자연스럽게 보인다.
 딱히 할 게 없어서 0.1초 지연을 두었다.
 이렇게 하면 자연스럽게 된다.
 
