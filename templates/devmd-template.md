@@ -1,7 +1,7 @@
 ---
 title: {{title}}
 date: {{date: YYYY-MM-DD}}
-time: {{time: hh:mm:ss}}
+time: {{time: HH:mm:ss}}
 tags:
   - 
 ---
